@@ -2,10 +2,8 @@ import { getAllPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
 
 export function generateStaticParams() {
-  return getAllPosts().map((post) => ({ slug: encodeURIComponent(post.slug) }));
+  return getAllPosts().map((post) => ({ slug: post.slug }));
 }
-
-export const dynamicParams = false;
 
 async function loadPost(slug: string) {
   const decoded = decodeURIComponent(slug);
