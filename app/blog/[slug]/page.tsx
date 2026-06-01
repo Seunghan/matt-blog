@@ -2,20 +2,17 @@ import { getAllPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
 
 export function generateStaticParams() {
-  return getAllPosts().map((post) => ({ slug: post.slug }));
+  return getAllPosts().map((post) => ({ slug: encodeURIComponent(post.slug) }));
 }
 
 export const dynamicParams = false;
 
 async function loadPost(slug: string) {
+  const decoded = decodeURIComponent(slug);
   try {
-    return await import(`@/content/posts/${slug}.mdx`);
+    return await import(`@/content/posts/${decoded}.mdx`);
   } catch {
-    try {
-      return await import(`@/content/posts/${slug}.md`);
-    } catch {
-      return null;
-    }
+    return null;
   }
 }
 

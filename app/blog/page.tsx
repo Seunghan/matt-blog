@@ -74,7 +74,7 @@ export default async function BlogPage({
         <ul className="space-y-10">
           {posts.map((post) => (
             <li key={post.slug}>
-              <Link href={`/blog/${post.slug}`} className="group block">
+              <Link href={`/blog/${encodeURIComponent(post.slug)}`} className="group block">
                 <div className="flex items-center gap-2">
                   <time className="text-sm text-zinc-500">{post.date}</time>
                   {post.category && (

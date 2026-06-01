@@ -34,7 +34,7 @@ export default async function CategoryPage({
       <ul className="space-y-10">
         {posts.map((post) => (
           <li key={post.slug}>
-            <Link href={`/blog/${post.slug}`} className="group block">
+            <Link href={`/blog/${encodeURIComponent(post.slug)}`} className="group block">
               <time className="text-sm text-zinc-500">{post.date}</time>
               <h2 className="mt-1 text-xl font-semibold group-hover:underline underline-offset-4">
                 {post.title}
