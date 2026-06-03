@@ -3,12 +3,8 @@ import { getAllPosts, getAllCategories } from "@/lib/posts";
 import { notFound } from "next/navigation";
 
 export function generateStaticParams() {
-  return getAllCategories().map((category) => ({
-    category: encodeURIComponent(category),
-  }));
+  return getAllCategories().map((category) => ({ category }));
 }
-
-export const dynamicParams = false;
 
 export default async function CategoryPage({
   params,
